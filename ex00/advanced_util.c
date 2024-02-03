@@ -6,7 +6,7 @@
 /*   By: klamprak <klamprak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 14:42:53 by klamprak          #+#    #+#             */
-/*   Updated: 2024/02/03 14:49:29 by klamprak         ###   ########.fr       */
+/*   Updated: 2024/02/03 15:06:34 by klamprak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,32 +17,24 @@
 // sign = 1 if positive and -1 if negative
 // return the integer from string
 // return 0 and put errno value in case of empty element
-int	ft_atoi(char *str, int sign)
+int	ft_atoi(char *str)
 {
 	int	div;
 	int	result;
 	int	index;
-	int	is_error;
 
 	result = 0;
 	index = 0;
-	is_error = 1;
 	while (str[index] != '\0' && str[index] >= '0' && str[index] <= '9')
-	{
-		is_error = 0;
 		index++;
-	}
 	div = 1;
 	while (str[index -1] >= '0' && str[index - 1] <= '9')
 	{
-		is_error = 0;
 		result = result - ((str[index - 1] - '0') * div);
 		div *= 10;
 		index--;
 	}
-	if (is_error)
-		errno = EINVAL;
-	return (result * sign * -1);
+	return (result * -1);
 }
 
 // trim spaces, signs from the beggining
