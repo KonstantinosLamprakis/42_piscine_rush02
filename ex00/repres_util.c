@@ -6,7 +6,7 @@
 /*   By: klamprak <klamprak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 14:07:11 by klamprak          #+#    #+#             */
-/*   Updated: 2024/02/04 19:29:16 by klamprak         ###   ########.fr       */
+/*   Updated: 2024/02/04 20:13:06 by klamprak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,39 @@ char	*represent_number(char *str)
 		return (NULL);
 	num_str = ft_copy_string(str, start, end);
 	return (num_str);
+}
+
+char	*check_zero(char dic[2][L][C], int size, char *result)
+{
+	int	i;
+
+	i = is_included("0", dic[0], size);
+	if (i == -1)
+		return (NULL);
+	ft_str_append(result, dic[1][i]);
+	return (result);
+}
+
+int	print_unit(char *num_str, char dic[2][L][C], int size, char *result)
+{
+	int	k;
+	int	result_length;
+	int	digit_n;
+	int	i;
+
+	digit_n = ft_strlen(num_str);
+	result_length = ft_strlen(result);
+	i = put_digits(num_str, dic, size, result);
+	if (i == -1)
+		return (-1);
+	num_str += i;
+	if (digit_n > 3 && result_length < ft_strlen(result))
+	{
+		k = get_word(ft_strlen(num_str) + 1, dic[0], size, '1');
+		if (k != -1)
+			ft_str_append(result, dic[1][k]);
+		else
+			return (-1);
+	}
+	return (i);
 }

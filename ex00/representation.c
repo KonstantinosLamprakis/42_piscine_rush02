@@ -6,7 +6,7 @@
 /*   By: klamprak <klamprak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 08:45:23 by klamprak          #+#    #+#             */
-/*   Updated: 2024/02/04 19:29:52 by klamprak         ###   ########.fr       */
+/*   Updated: 2024/02/04 20:12:27 by klamprak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,6 @@ char	*convert_number(char *num_str, char dic[2][L][C], int size)
 	char	*result;
 	int		k;
 	int		i;
-	int		result_length;
 	int		digit_n;
 
 	result = malloc(C * sizeof(char));
@@ -133,35 +132,16 @@ char	*convert_number(char *num_str, char dic[2][L][C], int size)
 		return (NULL);
 	result[0] = '\0';
 	if (is_zero(num_str))
-	{
-		i = is_included("0", dic[0], size);
-		if (i == -1)
-			return (NULL);
-		ft_str_append(result, dic[1][i]);
-		return (result);
-	}
+		return (check_zero(dic, size, result));
 	i = 0;
 	digit_n = ft_strlen(num_str);
-	// TODO check for NULL on the last func... put the below in while
 	while (i < digit_n)
 	{
-		result_length = ft_strlen(result);
-		k = put_digits(num_str, dic, size, result);
+		k = print_unit(num_str, dic, size, result);
 		if (k == -1)
 			return (NULL);
 		i += k;
 		num_str += k;
-		if (digit_n > 3 && result_length < ft_strlen(result))
-		{
-			k = get_word(ft_strlen(num_str) + 1, dic[0], size, '1');
-			if (k != -1)
-				ft_str_append(result, dic[1][k]);
-			else
-			{
-				printf("Error. insaficient dict\n");
-				return (NULL);
-			}
-		}
 	}
 	return (result);
 }

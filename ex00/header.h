@@ -6,7 +6,7 @@
 /*   By: klamprak <klamprak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 17:55:03 by klamprak          #+#    #+#             */
-/*   Updated: 2024/02/04 19:06:24 by klamprak         ###   ########.fr       */
+/*   Updated: 2024/02/04 20:12:19 by klamprak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ int		read_dict(char *file, char d_n[L][C], char d_w[L][C], int *size);
 int		get_word(int digit_n, char d_n[L][C], int size, char c);
 int		is_zero(char *num_str);
 char	*represent_number(char *str);
+int		print_unit(char *num_str, char dic[2][L][C], int size, char *result);
+char	*check_zero(char dic[2][L][C], int size, char *result);
 
 // declarations of util.c
 int		ft_is_equal_str(char *s1, char *s2);
