@@ -6,14 +6,14 @@
 /*   By: klamprak <klamprak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 10:13:03 by klamprak          #+#    #+#             */
-/*   Updated: 2024/02/04 18:07:45 by klamprak         ###   ########.fr       */
+/*   Updated: 2024/02/04 18:24:49 by klamprak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // TODO change error messages
 // TODO remove uneccesary function
 // TODO remove uneccesary lib includes
-// TODO free momory
+// TODO free momory of ft_copy_string, represent_number
 // TODO create .h file maybe
 // TODO see the case of key-value on different line or missing value
 // TODO trim space from output
@@ -21,11 +21,12 @@
 
 #include "header.h"
 
+// dicts[0] = dict for number
+// dicts[1] = dict for words
 int	main(int argc, char *argv[])
 {
 	char	*filename;
-	char	dict_num[L][C];
-	char	dict_words[L][C];
+	char	dicts[2][L][C];
 	int		size;
 	char	*number_str;
 
@@ -45,13 +46,13 @@ int	main(int argc, char *argv[])
 		return (0);
 	}
 	size = 0;
-	if (!read_dict(filename, dict_num, dict_words, &size))
+	if (!read_dict(filename, dicts[0], dicts[1], &size))
 	{
 		ft_put_str("Dict Error.\n");
 		return (0);
 	}
 	printf("Before: %s\n", number_str);
-	number_str = convert_number(number_str, dict_num, dict_words, size);
+	number_str = convert_number(number_str, dicts, size);
 	printf("After: %s\n", number_str);
 }
 

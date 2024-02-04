@@ -6,7 +6,7 @@
 /*   By: klamprak <klamprak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 17:55:03 by klamprak          #+#    #+#             */
-/*   Updated: 2024/02/04 18:12:45 by klamprak         ###   ########.fr       */
+/*   Updated: 2024/02/04 18:31:25 by klamprak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ int		ft_strlen(char *str);
 char	*ft_copy_string(char *str, int start, int end);
 int		ft_is_numeric(char *str);
 
-char	*print_1_d(char num_str, char d_n[L][C], char d_w[L][C], int size);
-char	*print_2_d(char *num_str, char d_n[L][C], char d_w[L][C], int size);
-char	*print_3_d(char *num_str, char d_n[L][C], char d_w[L][C], int size);
-char	*convert_number(char *num_str, char d_n[L][C], char d_w[L][C], int size);
+// declarations of representation.c
+char	*print_1_d(char num_str, char dic[2][L][C], int size);
+char	*print_2_d(char *num_str, char dic[2][L][C], int size);
+char	*print_3_d(char *num_str, char dic[2][L][C], int size);
+char	*convert_number(char *num_str, char dic[2][L][C], int size);

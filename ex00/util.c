@@ -6,7 +6,7 @@
 /*   By: klamprak <klamprak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 14:15:25 by klamprak          #+#    #+#             */
-/*   Updated: 2024/02/04 18:03:44 by klamprak         ###   ########.fr       */
+/*   Updated: 2024/02/04 18:21:07 by klamprak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ char	*ft_copy_string(char *str, int start, int end)
 	if (end - start < 0)
 		return (NULL);
 	result = malloc((end - start + 2) * sizeof(char));
+	if (!result)
+		return (NULL);
 	i = 0;
 	while (end - start >= 0)
 	{

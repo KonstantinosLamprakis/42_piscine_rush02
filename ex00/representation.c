@@ -6,7 +6,7 @@
 /*   By: klamprak <klamprak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 08:45:23 by klamprak          #+#    #+#             */
-/*   Updated: 2024/02/04 18:11:19 by klamprak         ###   ########.fr       */
+/*   Updated: 2024/02/04 18:30:25 by klamprak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 // return a string that represent the single digit num_str[0]
 // not usefull for zero
 // returns NULL if not exist representation on dict
-char	*print_1_d(char num_str, char d_n[L][C], char d_w[L][C], int size)
+char	*print_1_d(char num_str, char dic[2][L][C], int size)
 {
 	int		i;
 	char	result[2];
@@ -36,13 +36,13 @@ char	*print_1_d(char num_str, char d_n[L][C], char d_w[L][C], int size)
 	result[1] = '\0';
 	if (num_str == '0')
 		return ("");
-	i = is_included(result, d_n, size);
+	i = is_included(result, dic[0], size);
 	if (i != -1)
-		return (d_w[i]);
+		return (dic[1][i]);
 	return (NULL);
 }
 
-char	*print_2_d(char *num_str, char d_n[L][C], char d_w[L][C], int size)
+char	*print_2_d(char *num_str, char dic[2][L][C], int size)
 {
 	int		i;
 	char	*temp;
@@ -50,28 +50,28 @@ char	*print_2_d(char *num_str, char d_n[L][C], char d_w[L][C], int size)
 	char	*sub_str;
 
 	if (num_str[0] == '0')
-		return (print_1_d(num_str[1], d_n, d_w, size));
+		return (print_1_d(num_str[1], dic, size));
 	if (ft_strlen(num_str) < 2)
-		return (print_1_d(num_str[0], d_n, d_w, size));
+		return (print_1_d(num_str[0], dic, size));
 	sub_str = ft_copy_string(num_str, 0, 1);
-	i = is_included(sub_str, d_n, size);
+	i = is_included(sub_str, dic[0], size);
 	if (i != -1)
-		return (d_w[i]);
+		return (dic[1][i]);
 	result = malloc(C * sizeof(char));
 	result[0] = '\0';
-	i = get_word(2, d_n, size, num_str[0]);
+	i = get_word(2, dic[0], size, num_str[0]);
 	if (i != -1)
-		ft_str_append(result, d_w[i]);
+		ft_str_append(result, dic[1][i]);
 	else
 		return (NULL);
-	temp = print_1_d(sub_str[1], d_n, d_w, size);
+	temp = print_1_d(sub_str[1], dic, size);
 	if (!temp)
 		return (NULL);
 	ft_str_append(result, temp);
 	return (result);
 }
 
-char	*print_3_d(char *num_str, char d_n[L][C], char d_w[L][C], int size)
+char	*print_3_d(char *num_str, char dic[2][L][C], int size)
 {
 	int		i;
 	char	*temp;
@@ -81,20 +81,20 @@ char	*print_3_d(char *num_str, char d_n[L][C], char d_w[L][C], int size)
 	result = malloc(C * sizeof(char));
 	result[0] = '\0';
 	if (num_str[0] == '0')
-		return (print_2_d(num_str + 1, d_n, d_w, size));
+		return (print_2_d(num_str + 1, dic, size));
 	if (ft_strlen(num_str) < 3)
-		return (print_2_d(num_str, d_n, d_w, size));
-	temp = print_1_d(num_str[0], d_n, d_w, size);
+		return (print_2_d(num_str, dic, size));
+	temp = print_1_d(num_str[0], dic, size);
 	if (!temp)
 		return (NULL);
 	ft_str_append(result, temp);
 	sub_str = ft_copy_string(num_str, 0, 2);
-	i = get_word(3, d_n, size, '1');
+	i = get_word(3, dic[0], size, '1');
 	if (i != -1)
-		ft_str_append(result, d_w[i]);
+		ft_str_append(result, dic[1][i]);
 	else
 		return (NULL);
-	temp = print_2_d(sub_str + 1, d_n, d_w, size);
+	temp = print_2_d(sub_str + 1, dic, size);
 	if (!temp)
 		return (NULL);
 	ft_str_append(result, temp);
@@ -102,7 +102,7 @@ char	*print_3_d(char *num_str, char d_n[L][C], char d_w[L][C], int size)
 }
 
 // return the number represantation
-char	*convert_number(char *num_str, char d_n[L][C], char d_w[L][C], int size)
+char	*convert_number(char *num_str, char dic[2][L][C], int size)
 {
 	char	*result;
 	int		i;
@@ -116,10 +116,10 @@ char	*convert_number(char *num_str, char d_n[L][C], char d_w[L][C], int size)
 	result[0] = '\0';
 	if (is_zero(num_str))
 	{
-		i = is_included("0", d_n, size);
+		i = is_included("0", dic[0], size);
 		if (i == -1)
 			return (NULL);
-		ft_str_append(result, d_w[i]);
+		ft_str_append(result, dic[1][i]);
 		return (result);
 	}
 	end = ft_strlen(num_str);
@@ -129,27 +129,27 @@ char	*convert_number(char *num_str, char d_n[L][C], char d_w[L][C], int size)
 		digit_n = ft_strlen(num_str);
 		if (digit_n % 3 == 1)
 		{
-			ft_str_append(result, print_1_d(num_str[0], d_n, d_w, size));
+			ft_str_append(result, print_1_d(num_str[0], dic, size));
 			i++;
 			num_str++;
 		}
 		else if (digit_n % 3 == 2)
 		{
-			ft_str_append(result, print_2_d(num_str, d_n, d_w, size));
+			ft_str_append(result, print_2_d(num_str, dic, size));
 			i += 2;
 			num_str += 2;
 		}
 		else
 		{
-			ft_str_append(result, print_3_d(num_str, d_n, d_w, size));
+			ft_str_append(result, print_3_d(num_str, dic, size));
 			num_str += 3;
 			i += 3;
 		}
 		if (digit_n > 3 && result_length < ft_strlen(result))
 		{
-			k = get_word(ft_strlen(num_str) + 1, d_n, size, '1');
+			k = get_word(ft_strlen(num_str) + 1, dic[0], size, '1');
 			if (k != -1)
-				ft_str_append(result, d_w[k]);
+				ft_str_append(result, dic[1][k]);
 			else
 			{
 				printf("Error. insaficient dict\n");
