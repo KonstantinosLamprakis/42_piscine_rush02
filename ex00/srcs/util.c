@@ -6,7 +6,7 @@
 /*   By: klamprak <klamprak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 14:15:25 by klamprak          #+#    #+#             */
-/*   Updated: 2024/02/04 20:51:19 by klamprak         ###   ########.fr       */
+/*   Updated: 2024/02/05 00:03:10 by klamprak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	ft_strlen(char *str)
 	return (i);
 }
 
-void	ft_put_str(char *str)
+int	ft_put_str(char *str)
 {
 	int	i;
 
@@ -51,6 +51,7 @@ void	ft_put_str(char *str)
 		write(1, &str[i], 1);
 		i++;
 	}
+	return (0);
 }
 
 // returns a new string with malloc from first str

@@ -6,7 +6,7 @@
 /*   By: klamprak <klamprak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 10:13:03 by klamprak          #+#    #+#             */
-/*   Updated: 2024/02/04 23:05:01 by klamprak         ###   ########.fr       */
+/*   Updated: 2024/02/05 00:04:36 by klamprak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,20 +23,17 @@ int	main(int argc, char *argv[])
 	char	*number_str;
 	char	*result;
 
-	if (init(argc, argv[2], dicts, &size) == -1)
+	if (init(argc, argv[1], dicts, &size) == -1)
 		return (0);
-	number_str = represent_number(argv[1]);
+	if (argc == 2)
+		number_str = represent_number(argv[1]);
+	else
+		number_str = represent_number(argv[2]);
 	if (!number_str)
-	{
-		ft_put_str("Error\n");
-		return (0);
-	}
+		return (ft_put_str("Error\n"));
 	result = convert_number(number_str, dicts, size);
 	if (!result)
-	{
-		ft_put_str("Dict Error\n");
-		return (0);
-	}
+		return (ft_put_str("Dict Error\n"));
 	ft_put_str(result);
 	ft_put_str("\n");
 	free(number_str);
