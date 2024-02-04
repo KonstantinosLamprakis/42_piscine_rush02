@@ -6,7 +6,7 @@
 /*   By: klamprak <klamprak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 17:55:03 by klamprak          #+#    #+#             */
-/*   Updated: 2024/02/04 18:38:11 by klamprak         ###   ########.fr       */
+/*   Updated: 2024/02/04 19:06:24 by klamprak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,3 +48,4 @@ char	*print_1_d(char num_str, char dic[2][L][C], int size, char *result);
 char	*print_2_d(char *num_str, char dic[2][L][C], int size, char *result);
 char	*print_3_d(char *num_str, char dic[2][L][C], int size, char *result);
 char	*convert_number(char *num_str, char dic[2][L][C], int size);
+int		put_digits(char *num_str, char dic[2][L][C], int size, char *result);

@@ -6,7 +6,7 @@
 /*   By: klamprak <klamprak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 08:45:23 by klamprak          #+#    #+#             */
-/*   Updated: 2024/02/04 18:50:35 by klamprak         ###   ########.fr       */
+/*   Updated: 2024/02/04 19:29:52 by klamprak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,18 +92,45 @@ char	*print_3_d(char *num_str, char dic[2][L][C], int size, char *result)
 	return (result);
 }
 
+// returns -1 on error and size of digits printed otherwise
+int	put_digits(char *num_str, char dic[2][L][C], int size, char *result)
+{
+	int	i;
+
+	i = 0;
+	if (ft_strlen(num_str) % 3 == 1)
+	{
+		if (!print_1_d(num_str[0], dic, size, result))
+			return (-1);
+		i++;
+	}
+	else if (ft_strlen(num_str) % 3 == 2)
+	{
+		if (!print_2_d(num_str, dic, size, result))
+			return (-1);
+		i += 2;
+	}
+	else
+	{
+		if (!print_3_d(num_str, dic, size, result))
+			return (-1);
+		i += 3;
+	}
+	return (i);
+}
+
 // return the number represantation
 char	*convert_number(char *num_str, char dic[2][L][C], int size)
 {
 	char	*result;
-	int		i;
-	int		digit_n;
 	int		k;
-	int		end;
+	int		i;
 	int		result_length;
+	int		digit_n;
 
-	i = 0;
 	result = malloc(C * sizeof(char));
+	if (!result)
+		return (NULL);
 	result[0] = '\0';
 	if (is_zero(num_str))
 	{
@@ -113,29 +140,17 @@ char	*convert_number(char *num_str, char dic[2][L][C], int size)
 		ft_str_append(result, dic[1][i]);
 		return (result);
 	}
-	end = ft_strlen(num_str);
-	while (i < end)
+	i = 0;
+	digit_n = ft_strlen(num_str);
+	// TODO check for NULL on the last func... put the below in while
+	while (i < digit_n)
 	{
 		result_length = ft_strlen(result);
-		digit_n = ft_strlen(num_str);
-		if (digit_n % 3 == 1)
-		{
-			print_1_d(num_str[0], dic, size, result);
-			i++;
-			num_str++;
-		}
-		else if (digit_n % 3 == 2)
-		{
-			print_2_d(num_str, dic, size, result);
-			i += 2;
-			num_str += 2;
-		}
-		else
-		{
-			print_3_d(num_str, dic, size, result);
-			num_str += 3;
-			i += 3;
-		}
+		k = put_digits(num_str, dic, size, result);
+		if (k == -1)
+			return (NULL);
+		i += k;
+		num_str += k;
 		if (digit_n > 3 && result_length < ft_strlen(result))
 		{
 			k = get_word(ft_strlen(num_str) + 1, dic[0], size, '1');
