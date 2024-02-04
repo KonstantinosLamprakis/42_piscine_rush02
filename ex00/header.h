@@ -6,7 +6,7 @@
 /*   By: klamprak <klamprak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 17:55:03 by klamprak          #+#    #+#             */
-/*   Updated: 2024/02/04 20:28:27 by klamprak         ###   ########.fr       */
+/*   Updated: 2024/02/04 20:47:11 by klamprak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ char	*check_zero(char dic[2][L][C], int size, char *result);
 // declarations of util.c
 int		ft_is_equal_str(char *s1, char *s2);
 int		ft_strlen(char *str);
-char	*ft_copy_string(char *str, int start, int end);
+char	*ft_copy_string(char *str, int start, int end, char sub_str[3]);
 void	ft_put_str(char *str);
 char	*trim_space(char *str);
 

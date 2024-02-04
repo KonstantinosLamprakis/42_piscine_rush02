@@ -6,7 +6,7 @@
 /*   By: klamprak <klamprak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 14:07:11 by klamprak          #+#    #+#             */
-/*   Updated: 2024/02/04 20:13:06 by klamprak         ###   ########.fr       */
+/*   Updated: 2024/02/04 20:51:37 by klamprak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,8 @@ char	*represent_number(char *str)
 	end = skip_suffix(str, start);
 	if (end < start)
 		return (NULL);
-	num_str = ft_copy_string(str, start, end);
+	num_str = malloc(((end - start + 2) * sizeof(char)));
+	ft_copy_string(str, start, end, num_str);
 	return (num_str);
 }
 

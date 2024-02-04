@@ -6,7 +6,7 @@
 /*   By: klamprak <klamprak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 08:45:23 by klamprak          #+#    #+#             */
-/*   Updated: 2024/02/04 20:28:43 by klamprak         ###   ########.fr       */
+/*   Updated: 2024/02/04 20:51:53 by klamprak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,13 @@ char	*print_2_d(char *num_str, char dic[2][L][C], int size, char *result)
 {
 	int		i;
 	char	*temp;
-	char	*sub_str;
+	char	sub_str[3];
 
 	if (num_str[0] == '0')
 		return (print_1_d(num_str[1], dic, size, result));
 	if (ft_strlen(num_str) < 2)
 		return (print_1_d(num_str[0], dic, size, result));
-	sub_str = ft_copy_string(num_str, 0, 1);
+	ft_copy_string(num_str, 0, 1, sub_str);
 	i = is_included(sub_str, dic[0], size);
 	if (i != -1)
 		return (ft_str_append(result, dic[1][i]));
@@ -71,7 +71,7 @@ char	*print_3_d(char *num_str, char dic[2][L][C], int size, char *result)
 {
 	int		i;
 	char	*temp;
-	char	*sub_str;
+	char	sub_str[4];
 
 	if (num_str[0] == '0')
 		return (print_2_d(num_str + 1, dic, size, result));
@@ -80,7 +80,7 @@ char	*print_3_d(char *num_str, char dic[2][L][C], int size, char *result)
 	temp = print_1_d(num_str[0], dic, size, result);
 	if (!temp)
 		return (NULL);
-	sub_str = ft_copy_string(num_str, 0, 2);
+	ft_copy_string(num_str, 0, 2, sub_str);
 	i = get_word(3, dic[0], size, '1');
 	if (i != -1)
 		ft_str_append(result, dic[1][i]);

@@ -6,17 +6,14 @@
 /*   By: klamprak <klamprak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 10:13:03 by klamprak          #+#    #+#             */
-/*   Updated: 2024/02/04 18:53:41 by klamprak         ###   ########.fr       */
+/*   Updated: 2024/02/04 20:53:08 by klamprak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // TODO change error messages
-// TODO remove uneccesary function
 // TODO remove uneccesary lib includes
-// TODO free momory of ft_copy_string, represent_number, convert_number
-// TODO create .h file maybe
+// TODO free momory of represent_number, convert_number
 // TODO see the case of key-value on different line or missing value
-// TODO trim space from output
 // TODO don't take in considaration other values except initial ones
 
 #include "header.h"
