@@ -6,7 +6,7 @@
 /*   By: klamprak <klamprak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 10:13:03 by klamprak          #+#    #+#             */
-/*   Updated: 2024/02/04 13:50:41 by klamprak         ###   ########.fr       */
+/*   Updated: 2024/02/04 14:00:26 by klamprak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ void	ft_put_str(char *str);
 int		ft_is_numeric(char *str);
 char	*ft_copy_string(char *str, int start, int end);
 // Declarations of the advanced_util.c
-int		ft_atoi(char *str);
 int		skip_preffix(char *str, int *sign);
 int		skip_suffix(char *str, int index);
 // Declarations of the file.c

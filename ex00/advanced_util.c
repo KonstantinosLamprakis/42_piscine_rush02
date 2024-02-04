@@ -6,7 +6,7 @@
 /*   By: klamprak <klamprak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 14:42:53 by klamprak          #+#    #+#             */
-/*   Updated: 2024/02/04 08:09:05 by klamprak         ###   ########.fr       */
+/*   Updated: 2024/02/04 14:04:26 by klamprak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,12 @@
 
 #include <errno.h>
 
-// sign = 1 if positive and -1 if negative
-// returns the integer from string
-// returns 0 in case of empty element
-int	ft_atoi(char *str)
-{
-	int	div;
-	int	result;
-	int	index;
+// L = max number of lines in dict
+#define L 1024
+// C = max number of chars in each line
+#define C 1024
 
-	result = 0;
-	index = 0;
-	while (str[index] != '\0' && str[index] >= '0' && str[index] <= '9')
-		index++;
-	div = 1;
-	while (str[index -1] >= '0' && str[index - 1] <= '9')
-	{
-		result = result - ((str[index - 1] - '0') * div);
-		div *= 10;
-		index--;
-	}
-	return (result * -1);
-}
+int	ft_is_equal_str(char *s1, char *s2);
 
 // trim spaces, signs from the beggining
 // put 1 or -1 on sign depends on the number sign
@@ -74,4 +58,40 @@ int	skip_suffix(char *str, int index)
 		index++;
 	}
 	return (index - 1);
+}
+
+// append at the end of dst, the src. Both should be null-terminated
+void	ft_str_append(char *dst, char *src)
+{
+	int	i;
+	int	k;
+
+	i = 0;
+	k = 0;
+	if (src[0] == '\0')
+		return ;
+	while (dst[i] != '\0')
+		i++;
+	while (src[k] != '\0')
+		dst[i++] = src[k++];
+	dst[i++] = ' ';
+	dst[i] = '\0';
+}
+
+// returns index position if num_str included on dict else -1
+// stops when reach to stop point
+int	is_included(char *num_str, char d_n[L][C], int size)
+{
+	int	i;
+
+	i = 0;
+	while (i < size)
+	{
+		if (ft_is_equal_str(num_str, d_n[i]))
+		{
+			return (i);
+		}
+		i++;
+	}
+	return (-1);
 }
