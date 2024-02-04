@@ -6,7 +6,7 @@
 /*   By: klamprak <klamprak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 15:20:35 by klamprak          #+#    #+#             */
-/*   Updated: 2024/02/04 18:11:53 by klamprak         ###   ########.fr       */
+/*   Updated: 2024/02/04 21:27:10 by klamprak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,63 @@ int	is_space(char c)
 	t = (c != ' ') && (c != '\n') && (c != '\f');
 	t = t && (c != '\v') && (c != '\t') && (c != '\r');
 	return (!t);
+}
+
+// returns if a string is a valid dict key
+void	get_valid_table(char temp[41][100])
+{
+	int		t;
+	int		i;
+
+	i = 0;
+	while (i < 10)
+	{
+		temp[i][0] = '0' + i;
+		temp[i][1] = '\0';
+		temp[i + 10][0] = '1';
+		temp[i + 10][1] = '0' + i;
+		temp[i + 10][2] = '\0';
+		i++;
+	}
+	t = 20;
+	i = 2;
+	while (i <= 9)
+	{
+		temp[t][0] = '0' + i;
+		temp[t][1] = '0';
+		temp[t++][2] = '\0';
+		i++;
+	}
+	put_big_numbers(temp, t);
+}
+
+void	put_big_numbers(char temp[41][100], int index)
+{
+	int	i;
+	int	j;
+	int	zeros;
+
+	temp[index][0] = '1';
+	temp[index][1] = '0';
+	temp[index][2] = '0';
+	temp[index++][3] = '\0';
+	zeros = 4;
+	i = 0;
+	while (i <= 11)
+	{
+		j = 1;
+		temp[index][0] = '1';
+		while (j <= zeros + 1)
+		{
+			temp[index][j] = '0';
+			if (j == zeros)
+				temp[index][j + 1] = '\n';
+			j++;
+		}
+		zeros += 3;
+		i++;
+		index++;
+	}
 }
 
 // r_c: reads 1 char from dict and put it on d_w, d_n

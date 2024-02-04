@@ -6,7 +6,7 @@
 /*   By: klamprak <klamprak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 17:55:03 by klamprak          #+#    #+#             */
-/*   Updated: 2024/02/04 20:47:11 by klamprak         ###   ########.fr       */
+/*   Updated: 2024/02/04 21:28:29 by klamprak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ void	ft_put_str(char *str);
 int		is_space(char c);
 int		r_c(char d_n[L][C], char d_w[L][C], char c_j_k[3], int is_n_spb_nl[3]);
 int		read_dict(char *file, char d_n[L][C], char d_w[L][C], int *size);
+void	get_valid_table(char temp[41][100]);
+void	put_big_numbers(char temp[41][100], int index);
 
 // declarations of repres_util.c
 int		get_word(int digit_n, char d_n[L][C], int size, char c);
