@@ -6,7 +6,7 @@
 /*   By: klamprak <klamprak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 17:55:03 by klamprak          #+#    #+#             */
-/*   Updated: 2024/02/05 00:03:19 by klamprak         ###   ########.fr       */
+/*   Updated: 2024/02/05 00:06:14 by klamprak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ int		skip_preffix(char *str, int *sign);
 int		skip_suffix(char *str, int index);
 char	*ft_str_append(char *dst, char *src);
 int		is_included(char *num_str, char d_n[L][C], int size);
-int		ft_put_str(char *str);
 
 // declarations of file.c
 int		is_space(char c);
@@ -47,7 +46,7 @@ char	*check_zero(char dic[2][L][C], int size, char *result);
 int		ft_is_equal_str(char *s1, char *s2);
 int		ft_strlen(char *str);
 char	*ft_copy_string(char *str, int start, int end, char sub_str[3]);
-void	ft_put_str(char *str);
+int		ft_put_str(char *str);
 char	*trim_space(char *str);
 
 // declarations of representation.c
