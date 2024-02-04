@@ -6,7 +6,7 @@
 /*   By: klamprak <klamprak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 10:13:03 by klamprak          #+#    #+#             */
-/*   Updated: 2024/02/04 17:49:33 by klamprak         ###   ########.fr       */
+/*   Updated: 2024/02/04 18:07:45 by klamprak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,30 +19,7 @@
 // TODO trim space from output
 // TODO don't take in considaration other values except initial ones
 
-#include <unistd.h>
-#include <stdlib.h>
-#include <stdio.h>
-
-// L = max number of lines in dict
-#define L 1024
-// C = max number of chars in each line
-#define C 1024
-
-// Declarations of the main.c
-char	*represent_number(char *str);
-// Declarations of the util.c
-int		ft_is_equal_str(char *s1, char *s2);
-int		ft_strlen(char *str);
-void	ft_put_str(char *str);
-int		ft_is_numeric(char *str);
-char	*ft_copy_string(char *str, int start, int end);
-// Declarations of the advanced_util.c
-int		skip_preffix(char *str, int *sign);
-int		skip_suffix(char *str, int index);
-// Declarations of the file.c
-int		read_dict(char *file, char d_n[L][C], char d_w[L][C], int *size);
-// Declarations of the representation.c
-char	*convert_number(char *num_str, char d_n[L][C], char d_w[L][C], int size);
+#include "header.h"
 
 int	main(int argc, char *argv[])
 {
@@ -76,34 +53,11 @@ int	main(int argc, char *argv[])
 	printf("Before: %s\n", number_str);
 	number_str = convert_number(number_str, dict_num, dict_words, size);
 	printf("After: %s\n", number_str);
-	// int i = 0;
-	// while(i < size)
-	// {
-	// 	printf("|%s-%s|\n", dict_num[i], dict_words[i]);
-	// 	i++;
-	// }
-// 11.111.111.111.111.111.111.111
-// 1.000.000.000.000.000.000.000.000
-// 1.111.111.111.111.111.111.111.111
 }
 
-// str: a string containing the number
-// returns a new string with malloc or NULL in error
-// errors : malloc, multiple signs, negative number, chars before number
-char	*represent_number(char *str)
-{
-	int		start;
-	int		end;
-	int		sign;
-	char	*num_str;
-
-	sign = 1;
-	start = skip_preffix(str, &sign);
-	if (sign == -1)
-		return (NULL);
-	end = skip_suffix(str, start);
-	if (end < start)
-		return (NULL);
-	num_str = ft_copy_string(str, start, end);
-	return (num_str);
-}
+// int i = 0;
+// while(i < size)
+// {
+// 	printf("|%s-%s|\n", dict_num[i], dict_words[i]);
+// 	i++;
+// }

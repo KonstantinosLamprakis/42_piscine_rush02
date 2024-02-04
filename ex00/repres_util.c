@@ -6,16 +6,11 @@
 /*   By: klamprak <klamprak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 14:07:11 by klamprak          #+#    #+#             */
-/*   Updated: 2024/02/04 17:49:28 by klamprak         ###   ########.fr       */
+/*   Updated: 2024/02/04 18:08:09 by klamprak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// L = max number of lines in dict
-#define L 1024
-// C = max number of chars in each line
-#define C 1024
-
-#include <stdio.h>
+#include "header.h"
 
 int		is_included(char *num_str, char d_n[L][C], int size);
 
@@ -51,4 +46,25 @@ int	is_zero(char *num_str)
 		i++;
 	}
 	return (result);
+}
+
+// str: a string containing the number
+// returns a new string with malloc or NULL in error
+// errors : malloc, multiple signs, negative number, chars before number
+char	*represent_number(char *str)
+{
+	int		start;
+	int		end;
+	int		sign;
+	char	*num_str;
+
+	sign = 1;
+	start = skip_preffix(str, &sign);
+	if (sign == -1)
+		return (NULL);
+	end = skip_suffix(str, start);
+	if (end < start)
+		return (NULL);
+	num_str = ft_copy_string(str, start, end);
+	return (num_str);
 }

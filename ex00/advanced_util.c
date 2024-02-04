@@ -6,20 +6,13 @@
 /*   By: klamprak <klamprak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 14:42:53 by klamprak          #+#    #+#             */
-/*   Updated: 2024/02/04 14:04:26 by klamprak         ###   ########.fr       */
+/*   Updated: 2024/02/04 18:02:14 by klamprak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // This file contains some functions specialized for this project
 
-#include <errno.h>
-
-// L = max number of lines in dict
-#define L 1024
-// C = max number of chars in each line
-#define C 1024
-
-int	ft_is_equal_str(char *s1, char *s2);
+#include "header.h"
 
 // trim spaces, signs from the beggining
 // put 1 or -1 on sign depends on the number sign

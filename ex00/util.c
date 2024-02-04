@@ -6,14 +6,13 @@
 /*   By: klamprak <klamprak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 14:15:25 by klamprak          #+#    #+#             */
-/*   Updated: 2024/02/04 12:06:01 by klamprak         ###   ########.fr       */
+/*   Updated: 2024/02/04 18:03:44 by klamprak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // This file contains some basic util fanctions
 
-#include <unistd.h>
-#include <stdlib.h>
+#include "header.h"
 
 // compare 2 strings and return 1 only if they are equal
 int	ft_is_equal_str(char *s1, char *s2)
