@@ -6,7 +6,7 @@
 /*   By: klamprak <klamprak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 08:45:23 by klamprak          #+#    #+#             */
-/*   Updated: 2024/02/04 18:30:25 by klamprak         ###   ########.fr       */
+/*   Updated: 2024/02/04 18:50:35 by klamprak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,77 +27,68 @@
 // return a string that represent the single digit num_str[0]
 // not usefull for zero
 // returns NULL if not exist representation on dict
-char	*print_1_d(char num_str, char dic[2][L][C], int size)
+char	*print_1_d(char num_str, char dic[2][L][C], int size, char *result)
 {
 	int		i;
-	char	result[2];
+	char	temp[2];
 
-	result[0] = num_str;
-	result[1] = '\0';
+	temp[0] = num_str;
+	temp[1] = '\0';
 	if (num_str == '0')
-		return ("");
-	i = is_included(result, dic[0], size);
+		return (result);
+	i = is_included(temp, dic[0], size);
 	if (i != -1)
-		return (dic[1][i]);
+		return (ft_str_append(result, dic[1][i]));
 	return (NULL);
 }
 
-char	*print_2_d(char *num_str, char dic[2][L][C], int size)
+char	*print_2_d(char *num_str, char dic[2][L][C], int size, char *result)
 {
 	int		i;
 	char	*temp;
-	char	*result;
 	char	*sub_str;
 
 	if (num_str[0] == '0')
-		return (print_1_d(num_str[1], dic, size));
+		return (print_1_d(num_str[1], dic, size, result));
 	if (ft_strlen(num_str) < 2)
-		return (print_1_d(num_str[0], dic, size));
+		return (print_1_d(num_str[0], dic, size, result));
 	sub_str = ft_copy_string(num_str, 0, 1);
 	i = is_included(sub_str, dic[0], size);
 	if (i != -1)
-		return (dic[1][i]);
-	result = malloc(C * sizeof(char));
-	result[0] = '\0';
+		return (ft_str_append(result, dic[1][i]));
 	i = get_word(2, dic[0], size, num_str[0]);
 	if (i != -1)
 		ft_str_append(result, dic[1][i]);
 	else
 		return (NULL);
-	temp = print_1_d(sub_str[1], dic, size);
+	temp = print_1_d(sub_str[1], dic, size, result);
 	if (!temp)
 		return (NULL);
-	ft_str_append(result, temp);
 	return (result);
 }
 
-char	*print_3_d(char *num_str, char dic[2][L][C], int size)
+char	*print_3_d(char *num_str, char dic[2][L][C], int size, char *result)
 {
 	int		i;
 	char	*temp;
-	char	*result;
 	char	*sub_str;
 
-	result = malloc(C * sizeof(char));
-	result[0] = '\0';
 	if (num_str[0] == '0')
-		return (print_2_d(num_str + 1, dic, size));
+		return (print_2_d(num_str + 1, dic, size, result));
 	if (ft_strlen(num_str) < 3)
-		return (print_2_d(num_str, dic, size));
-	temp = print_1_d(num_str[0], dic, size);
+		return (print_2_d(num_str, dic, size, result));
+	temp = print_1_d(num_str[0], dic, size, result);
 	if (!temp)
 		return (NULL);
-	ft_str_append(result, temp);
 	sub_str = ft_copy_string(num_str, 0, 2);
 	i = get_word(3, dic[0], size, '1');
 	if (i != -1)
 		ft_str_append(result, dic[1][i]);
 	else
 		return (NULL);
-	temp = print_2_d(sub_str + 1, dic, size);
+	temp = print_2_d(sub_str + 1, dic, size, result);
 	if (!temp)
 		return (NULL);
-	ft_str_append(result, temp);
 	return (result);
 }
 
@@ -129,19 +120,19 @@ char	*convert_number(char *num_str, char dic[2][L][C], int size)
 		digit_n = ft_strlen(num_str);
 		if (digit_n % 3 == 1)
 		{
-			ft_str_append(result, print_1_d(num_str[0], dic, size));
+			print_1_d(num_str[0], dic, size, result);
 			i++;
 			num_str++;
 		}
 		else if (digit_n % 3 == 2)
 		{
-			ft_str_append(result, print_2_d(num_str, dic, size));
+			print_2_d(num_str, dic, size, result);
 			i += 2;
 			num_str += 2;
 		}
 		else
 		{
-			ft_str_append(result, print_3_d(num_str, dic, size));
+			print_3_d(num_str, dic, size, result);
 			num_str += 3;
 			i += 3;
 		}

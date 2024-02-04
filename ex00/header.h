@@ -6,7 +6,7 @@
 /*   By: klamprak <klamprak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 17:55:03 by klamprak          #+#    #+#             */
-/*   Updated: 2024/02/04 18:31:25 by klamprak         ###   ########.fr       */
+/*   Updated: 2024/02/04 18:38:11 by klamprak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 // declarations of advanced_util.c
 int		skip_preffix(char *str, int *sign);
 int		skip_suffix(char *str, int index);
-void	ft_str_append(char *dst, char *src);
+char	*ft_str_append(char *dst, char *src);
 int		is_included(char *num_str, char d_n[L][C], int size);
 void	ft_put_str(char *str);
 
@@ -44,7 +44,7 @@ char	*ft_copy_string(char *str, int start, int end);
 int		ft_is_numeric(char *str);
 
 // declarations of representation.c
-char	*print_1_d(char num_str, char dic[2][L][C], int size);
-char	*print_2_d(char *num_str, char dic[2][L][C], int size);
-char	*print_3_d(char *num_str, char dic[2][L][C], int size);
+char	*print_1_d(char num_str, char dic[2][L][C], int size, char *result);
+char	*print_2_d(char *num_str, char dic[2][L][C], int size, char *result);
+char	*print_3_d(char *num_str, char dic[2][L][C], int size, char *result);
 char	*convert_number(char *num_str, char dic[2][L][C], int size);

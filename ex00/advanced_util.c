@@ -6,7 +6,7 @@
 /*   By: klamprak <klamprak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 14:42:53 by klamprak          #+#    #+#             */
-/*   Updated: 2024/02/04 18:02:14 by klamprak         ###   ########.fr       */
+/*   Updated: 2024/02/04 18:43:44 by klamprak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	skip_suffix(char *str, int index)
 }
 
 // append at the end of dst, the src. Both should be null-terminated
-void	ft_str_append(char *dst, char *src)
+char	*ft_str_append(char *dst, char *src)
 {
 	int	i;
 	int	k;
@@ -62,13 +62,14 @@ void	ft_str_append(char *dst, char *src)
 	i = 0;
 	k = 0;
 	if (src[0] == '\0')
-		return ;
+		return (dst);
 	while (dst[i] != '\0')
 		i++;
 	while (src[k] != '\0')
 		dst[i++] = src[k++];
 	dst[i++] = ' ';
 	dst[i] = '\0';
+	return (dst);
 }
 
 // returns index position if num_str included on dict else -1
