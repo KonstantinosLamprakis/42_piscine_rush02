@@ -6,7 +6,7 @@
 /*   By: klamprak <klamprak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 15:20:35 by klamprak          #+#    #+#             */
-/*   Updated: 2024/02/04 21:27:10 by klamprak         ###   ########.fr       */
+/*   Updated: 2024/02/04 21:51:17 by klamprak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	put_big_numbers(char temp[41][100], int index)
 	{
 		j = 1;
 		temp[index][0] = '1';
-		while (j <= zeros + 1)
+		while (j <= zeros - 1)
 		{
 			temp[index][j] = '0';
 			if (j == zeros)

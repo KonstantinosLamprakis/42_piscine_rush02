@@ -6,7 +6,7 @@
 /*   By: klamprak <klamprak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 17:55:03 by klamprak          #+#    #+#             */
-/*   Updated: 2024/02/04 21:28:29 by klamprak         ###   ########.fr       */
+/*   Updated: 2024/02/04 21:48:48 by klamprak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,3 +54,7 @@ char	*print_2_d(char *num_str, char dic[2][L][C], int size, char *result);
 char	*print_3_d(char *num_str, char dic[2][L][C], int size, char *result);
 char	*convert_number(char *num_str, char dic[2][L][C], int size);
 int		put_digits(char *num_str, char dic[2][L][C], int size, char *result);
+
+// declarations of main.c
+int		is_included_arr(char *num_str, char d_n[41][100], int size);
+int		dict_compare(char dicts[2][L][C], char v_t[41][100], int size);
