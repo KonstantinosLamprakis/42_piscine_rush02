@@ -6,7 +6,7 @@
 /*   By: klamprak <klamprak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 14:15:25 by klamprak          #+#    #+#             */
-/*   Updated: 2024/02/04 08:12:15 by klamprak         ###   ########.fr       */
+/*   Updated: 2024/02/04 12:06:01 by klamprak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 
-// compare 2 strings and return 0 only if they are equal
+// compare 2 strings and return 1 only if they are equal
 int	ft_is_equal_str(char *s1, char *s2)
 {
 	int	i;
@@ -24,12 +24,12 @@ int	ft_is_equal_str(char *s1, char *s2)
 	while ((s1[i] != '\0') && (s2[i] != '\0'))
 	{
 		if (s1[i] != s2[i])
-			return (1);
+			return (0);
 		i++;
 	}
 	if (s1[i] == '\0' && s2[i] == '\0')
-		return (0);
-	return (1);
+		return (1);
+	return (0);
 }
 
 int	ft_strlen(char *str)

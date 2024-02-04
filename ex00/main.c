@@ -6,7 +6,7 @@
 /*   By: klamprak <klamprak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 10:13:03 by klamprak          #+#    #+#             */
-/*   Updated: 2024/02/04 08:20:39 by klamprak         ###   ########.fr       */
+/*   Updated: 2024/02/04 13:50:41 by klamprak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 // TODO remove uneccesary lib includes
 // TODO free momory
 // TODO create .h file maybe
+// TODO see the case of key-value on different line or missing value
 
 #include <unistd.h>
 #include <stdlib.h>
@@ -39,6 +40,8 @@ int		skip_preffix(char *str, int *sign);
 int		skip_suffix(char *str, int index);
 // Declarations of the file.c
 int		read_dict(char *file, char d_n[L][C], char d_w[L][C], int *size);
+// Declarations of the representation.c
+char	*convert_number(char *num_str, char d_n[L][C], char d_w[L][C], int size);
 
 int	main(int argc, char *argv[])
 {
@@ -46,7 +49,6 @@ int	main(int argc, char *argv[])
 	char	dict_num[L][C];
 	char	dict_words[L][C];
 	int		size;
-	int		number;
 	char	*number_str;
 
 	if (argc == 3)
@@ -70,8 +72,10 @@ int	main(int argc, char *argv[])
 		ft_put_str("Dict Error.\n");
 		return (0);
 	}
-	number = ft_atoi(number_str);
-	printf("number: %d\n", number);
+	printf("Before: %s\n", number_str);
+	number_str = convert_number(number_str, dict_num, dict_words, size);
+	printf("After: %s\n", number_str);
+
 }
 
 // str: a string containing the number
@@ -89,7 +93,7 @@ char	*represent_number(char *str)
 	if (sign == -1)
 		return (NULL);
 	end = skip_suffix(str, start);
-	if (end <= start)
+	if (end < start)
 		return (NULL);
 	num_str = ft_copy_string(str, start, end);
 	return (num_str);
