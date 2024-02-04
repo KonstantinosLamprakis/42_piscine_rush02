@@ -6,7 +6,7 @@
 /*   By: klamprak <klamprak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 10:13:03 by klamprak          #+#    #+#             */
-/*   Updated: 2024/02/04 14:00:26 by klamprak         ###   ########.fr       */
+/*   Updated: 2024/02/04 17:49:33 by klamprak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 // TODO free momory
 // TODO create .h file maybe
 // TODO see the case of key-value on different line or missing value
+// TODO trim space from output
+// TODO don't take in considaration other values except initial ones
 
 #include <unistd.h>
 #include <stdlib.h>
@@ -74,7 +76,15 @@ int	main(int argc, char *argv[])
 	printf("Before: %s\n", number_str);
 	number_str = convert_number(number_str, dict_num, dict_words, size);
 	printf("After: %s\n", number_str);
-
+	// int i = 0;
+	// while(i < size)
+	// {
+	// 	printf("|%s-%s|\n", dict_num[i], dict_words[i]);
+	// 	i++;
+	// }
+// 11.111.111.111.111.111.111.111
+// 1.000.000.000.000.000.000.000.000
+// 1.111.111.111.111.111.111.111.111
 }
 
 // str: a string containing the number

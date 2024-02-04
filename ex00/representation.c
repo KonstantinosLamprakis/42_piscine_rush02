@@ -6,7 +6,7 @@
 /*   By: klamprak <klamprak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 08:45:23 by klamprak          #+#    #+#             */
-/*   Updated: 2024/02/04 14:03:31 by klamprak         ###   ########.fr       */
+/*   Updated: 2024/02/04 17:49:20 by klamprak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,12 @@ int		read_dict(char *file, char d_n[L][C], char d_w[L][C], int *size);
 int		is_included(char *num_str, char d_n[L][C], int size);
 void	ft_str_append(char *dst, char *src);
 int		get_word(int digit_n, char d_n[L][C], int size, char c);
+int		get_word(int digit_n, char d_n[L][C], int size, char c);
+int		is_zero(char *num_str);
 
+// return a string that represent the single digit num_str[0]
+// not usefull for zero
+// returns NULL if not exist representation on dict
 char	*print_1_digit(char num_str, char d_n[L][C], char d_w[L][C], int size)
 {
 	int		i;
@@ -68,44 +73,30 @@ char	*print_2_digits(char *num_str, char d_n[L][C], char d_w[L][C], int size)
 	int		i;
 	char	*temp;
 	char	*result;
-	char	sub_str[3];
+	char	*sub_str;
 
-	result = malloc(C * sizeof(char));
 	// if start with 0 means its 1 digit
 	if (num_str[0] == '0')
-	{
-		printf("zero here on 2 %s\n", num_str);
 		return (print_1_digit(num_str[1], d_n, d_w, size));
-	}
 	if (ft_strlen(num_str) < 2)
-	{
-		printf("zero here on 2 %s\n", num_str);
 		return (print_1_digit(num_str[0], d_n, d_w, size));
-	}
 	// check for the whole number
-	sub_str[0] = num_str[0];
-	sub_str[1] = num_str[1];
-	sub_str[2] = '\0';
+	sub_str = ft_copy_string(num_str, 0, 1);
 	i = is_included(sub_str, d_n, size);
 	if (i != -1)
 		return (d_w[i]);
 	// check more general like 20, 30
+	result = malloc(C * sizeof(char));
 	result[0] = '\0';
 	i = get_word(2, d_n, size, num_str[0]);
 	if (i != -1)
 		ft_str_append(result, d_w[i]);
 	else
-	{
-		printf("Error21\n");
-		exit(0);
-	}
+		return (NULL);
 	// print last digit
 	temp = print_1_digit(sub_str[1], d_n, d_w, size);
 	if (!temp)
-	{
-		printf("Error22\n");
-		exit(0);
-	}
+		return (NULL);
 	ft_str_append(result, temp);
 	return (result);
 }
@@ -115,73 +106,33 @@ char	*print_3_digits(char *num_str, char d_n[L][C], char d_w[L][C], int size)
 	int		i;
 	char	*temp;
 	char	*result;
-	char	sub_str[4];
+	char	*sub_str;
 
 	result = malloc(C * sizeof(char));
 	result[0] = '\0';
 	// if start with 0 means its 2 digits
 	if (num_str[0] == '0')
-	{
-		printf("zero here on 3 %s\n", num_str);
 		return (print_2_digits(num_str + 1, d_n, d_w, size));
-	}
 	if (ft_strlen(num_str) < 3)
-	{
-		printf("zero here on 3 %s\n", num_str);
 		return (print_2_digits(num_str, d_n, d_w, size));
-	}
 	// print first single digit
 	temp = print_1_digit(num_str[0], d_n, d_w, size);
 	if (!temp)
-	{
-		printf("Error30\n");
-		exit(0);
-	}
+		return (NULL);
 	ft_str_append(result, temp);
 	// check for the whole number
-	sub_str[0] = num_str[0];
-	sub_str[1] = num_str[1];
-	sub_str[2] = num_str[2];
-	sub_str[3] = '\0';
-	i = is_included(sub_str, d_n, size);
-	if (i != -1)
-	{
-		ft_str_append(result, d_w[i]);
-		return (result);
-	}
+	sub_str = ft_copy_string(num_str, 0, 2);
 	// check more general like 100
 	i = get_word(3, d_n, size, '1');
 	if (i != -1)
 		ft_str_append(result, d_w[i]);
 	else
-	{
-		printf("Error31\n");
-		exit(0);
-	}
+		return (NULL);
 	// print last 2 digits
 	temp = print_2_digits(sub_str + 1, d_n, d_w, size);
 	if (!temp)
-	{
-		printf("Error32\n");
-		exit(0);
-	}
+		return (NULL);
 	ft_str_append(result, temp);
-	return (result);
-}
-
-int	is_zero(char *num_str)
-{
-	int	i;
-	int	result;
-
-	i = 0;
-	result = num_str[0] == '0';
-	while (num_str[i] != '\0')
-	{
-		if (num_str[i] != '0')
-			return (0);
-		i++;
-	}
 	return (result);
 }
 
@@ -202,10 +153,7 @@ char	*convert_number(char *num_str, char d_n[L][C], char d_w[L][C], int size)
 	{
 		i = is_included("0", d_n, size);
 		if (i == -1)
-		{
-			printf("Error 0\n");
 			return (NULL);
-		}
 		ft_str_append(result, d_w[i]);
 		return (result);
 	}
@@ -235,11 +183,9 @@ char	*convert_number(char *num_str, char d_n[L][C], char d_w[L][C], int size)
 		// add unit ex. thousand, million etc.
 		if (digit_n > 3 && result_length < ft_strlen(result))
 		{
-			k = get_word(digit_n - (digit_n % 3) + 1, d_n, size, '1');
+			k = get_word(ft_strlen(num_str) + 1, d_n, size, '1');
 			if (k != -1)
-			{
 				ft_str_append(result, d_w[k]);
-			}
 			else
 			{
 				printf("Error. insaficient dict\n");
@@ -248,21 +194,4 @@ char	*convert_number(char *num_str, char d_n[L][C], char d_w[L][C], int size)
 		}
 	}
 	return (result);
-}
-
-// return a word like 100000000 with digit_n number of digits if included
-int	get_word(int digit_n, char d_n[L][C], int size, char c)
-{
-	int		i;
-	char	temp[C];
-
-	temp [0] = c;
-	i = 1;
-	while (i < digit_n)
-	{
-		temp[i] = '0';
-		i++;
-	}
-	temp[i] = '\0';
-	return (is_included(temp, d_n, size));
 }
