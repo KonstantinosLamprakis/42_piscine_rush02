@@ -6,7 +6,7 @@
 /*   By: klamprak <klamprak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 17:55:03 by klamprak          #+#    #+#             */
-/*   Updated: 2024/02/04 21:48:48 by klamprak         ###   ########.fr       */
+/*   Updated: 2024/02/04 23:04:18 by klamprak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 #include <stdlib.h>
 #include <fcntl.h>
 #include <unistd.h>
-#include <stdio.h>
 
 // declarations of advanced_util.c
 int		skip_preffix(char *str, int *sign);
@@ -58,3 +57,5 @@ int		put_digits(char *num_str, char dic[2][L][C], int size, char *result);
 // declarations of main.c
 int		is_included_arr(char *num_str, char d_n[41][100], int size);
 int		dict_compare(char dicts[2][L][C], char v_t[41][100], int size);
+int		validate_dict(char *filename, char dicts[2][L][C], int *size);
+int		init(int argc, char *argv, char dicts[2][L][C], int *size);
