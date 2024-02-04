@@ -6,7 +6,7 @@
 /*   By: klamprak <klamprak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 14:42:53 by klamprak          #+#    #+#             */
-/*   Updated: 2024/02/04 05:51:43 by klamprak         ###   ########.fr       */
+/*   Updated: 2024/02/04 08:09:05 by klamprak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 #include <errno.h>
 
 // sign = 1 if positive and -1 if negative
-// return the integer from string
-// return 0 and put errno value in case of empty element
+// returns the integer from string
+// returns 0 in case of empty element
 int	ft_atoi(char *str)
 {
 	int	div;
@@ -39,7 +39,7 @@ int	ft_atoi(char *str)
 
 // trim spaces, signs from the beggining
 // put 1 or -1 on sign depends on the number sign
-// return the first index of string after the sign
+// return the first index of string after the sign or spaces
 int	skip_preffix(char *str, int *sign)
 {
 	int	i;

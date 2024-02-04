@@ -6,7 +6,7 @@
 /*   By: klamprak <klamprak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 14:15:25 by klamprak          #+#    #+#             */
-/*   Updated: 2024/02/03 14:51:33 by klamprak         ###   ########.fr       */
+/*   Updated: 2024/02/04 08:12:15 by klamprak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,13 +54,15 @@ void	ft_put_str(char *str)
 	}
 }
 
-// return a new string with malloc from first str
+// returns a new string with malloc from first str
 // start and end are indexes of 1st and last char in str
 char	*ft_copy_string(char *str, int start, int end)
 {
 	char	*result;
 	int		i;
 
+	if (end - start < 0)
+		return (NULL);
 	result = malloc((end - start + 2) * sizeof(char));
 	i = 0;
 	while (end - start >= 0)

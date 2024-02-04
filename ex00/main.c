@@ -6,7 +6,7 @@
 /*   By: klamprak <klamprak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 10:13:03 by klamprak          #+#    #+#             */
-/*   Updated: 2024/02/03 15:08:51 by klamprak         ###   ########.fr       */
+/*   Updated: 2024/02/04 08:20:39 by klamprak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,11 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+// L = max number of lines in dict
+#define L 1024
+// C = max number of chars in each line
+#define C 1024
+
 // Declarations of the main.c
 char	*represent_number(char *str);
 // Declarations of the util.c
@@ -32,20 +37,22 @@ char	*ft_copy_string(char *str, int start, int end);
 int		ft_atoi(char *str);
 int		skip_preffix(char *str, int *sign);
 int		skip_suffix(char *str, int index);
+// Declarations of the file.c
+int		read_dict(char *file, char d_n[L][C], char d_w[L][C], int *size);
 
 int	main(int argc, char *argv[])
 {
+	char	*filename;
+	char	dict_num[L][C];
+	char	dict_words[L][C];
+	int		size;
 	int		number;
 	char	*number_str;
 
 	if (argc == 3)
-	{
-		// TODO read new dictionary
-	}
+		filename = argv[2];
 	else if (argc == 2)
-	{
-		// TODO existing dict
-	}
+		filename = "numbers.dict";
 	else
 	{
 		ft_put_str("Error. Number of params\n");
@@ -57,10 +64,19 @@ int	main(int argc, char *argv[])
 		ft_put_str("Error. Negative number or empty param\n");
 		return (0);
 	}
+	size = 0;
+	if (!read_dict(filename, dict_num, dict_words, &size))
+	{
+		ft_put_str("Dict Error.\n");
+		return (0);
+	}
 	number = ft_atoi(number_str);
 	printf("number: %d\n", number);
 }
 
+// str: a string containing the number
+// returns a new string with malloc or NULL in error
+// errors : malloc, multiple signs, negative number, chars before number
 char	*represent_number(char *str)
 {
 	int		start;
