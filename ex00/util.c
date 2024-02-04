@@ -6,7 +6,7 @@
 /*   By: klamprak <klamprak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 14:15:25 by klamprak          #+#    #+#             */
-/*   Updated: 2024/02/04 20:12:56 by klamprak         ###   ########.fr       */
+/*   Updated: 2024/02/04 20:30:06 by klamprak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,17 +76,31 @@ char	*ft_copy_string(char *str, int start, int end)
 	return (result);
 }
 
-int	ft_is_numeric(char *str)
+char	*trim_space(char *str)
 {
-	int	i;
+	int		i;
+	int		space_before;
+	char	temp[C];
+	int		k;
 
+	k = 0;
 	i = 0;
-	if (str[0] == '\0')
-		return (0);
+	space_before = 1;
 	while (str[i] != '\0')
 	{
-		if (!(str[i] >= '0' && str[i] <= '9'))
-			return (0);
+		if (space_before && str[i] != ' ')
+			space_before = 0;
+		if (!(space_before && str[i] == ' '))
+		{
+			temp[k++] = str[i];
+			i++;
+		}
 	}
-	return (1);
+	if (str[i - 1] == ' ')
+		temp[k - 1] = '\0';
+	else
+		temp[k] = '\0';
+	str[0] = '\0';
+	ft_str_append(str, temp);
+	return (str);
 }

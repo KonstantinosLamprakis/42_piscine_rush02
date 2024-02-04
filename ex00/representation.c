@@ -6,7 +6,7 @@
 /*   By: klamprak <klamprak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 08:45:23 by klamprak          #+#    #+#             */
-/*   Updated: 2024/02/04 20:12:27 by klamprak         ###   ########.fr       */
+/*   Updated: 2024/02/04 20:28:43 by klamprak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,5 +143,6 @@ char	*convert_number(char *num_str, char dic[2][L][C], int size)
 		i += k;
 		num_str += k;
 	}
+	trim_space(result);
 	return (result);
 }
