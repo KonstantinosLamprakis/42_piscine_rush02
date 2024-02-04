@@ -6,7 +6,7 @@
 /*   By: klamprak <klamprak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 14:42:53 by klamprak          #+#    #+#             */
-/*   Updated: 2024/02/03 15:06:34 by klamprak         ###   ########.fr       */
+/*   Updated: 2024/02/04 05:51:43 by klamprak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ int	skip_preffix(char *str, int *sign)
 	int	i;
 	int	t;
 
-	t = 1;
 	i = 0;
 	*sign = 1;
 	while (str[i] != '\0')
